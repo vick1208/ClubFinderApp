@@ -6,9 +6,12 @@ const home = () => {
   const searchFormElement = document.querySelector('search-bar');
 
   const clubListContainerElement = document.querySelector('#clubListContainer');
-  const clubQueryWaitingElement = clubListContainerElement.querySelector('.query-waiting');
-  const clubLoadingElement = clubListContainerElement.querySelector('.search-loading');
-  const clubListElement = clubListContainerElement.querySelector('club-list');
+  // const clubQueryWaitingElement = clubListContainerElement.querySelector('.query-waiting');
+  // const clubLoadingElement = clubListContainerElement.querySelector('.search-loading');
+  // const clubListElement = clubListContainerElement.querySelector('club-list');
+  const clubQueryWaitingElement = document.querySelector('.query-waiting');
+  const clubLoadingElement = document.querySelector('.search-loading');
+  const clubListElement = document.querySelector('club-list');
   
   const showSportClub = (query) => {
     showLoading();
