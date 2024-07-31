@@ -40,7 +40,7 @@ class FooterBar extends HTMLElement {
         <div>
             Club Finder &copy; 2023
         </div>
-      `;
+    `;
     }
 }
 
