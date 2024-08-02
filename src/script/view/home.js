@@ -7,20 +7,34 @@ const home = () => {
   const clubListContainerElement = document.querySelector('#clubListContainer');
   const clubQueryWaitingElement = clubListContainerElement.querySelector('.query-waiting');
   const clubLoadingElement = clubListContainerElement.querySelector('.search-loading');
+  const clubSearchErrorElement = clubListContainerElement.querySelector('club-search-error');
   const clubListElement = clubListContainerElement.querySelector('club-list');
 
-  const showSportClub = (query) => {
+  const showSportClub = async (query) => {
     showLoading();
 
-    SportsApi.searchClub(query)
-    .then((result)=>{
+
+    try {
+      const result = await SportsApi.searchClub(query);
       displayResult(result);
 
       showClubList();
-    })
-    .catch((error)=>{
-      console.error(error);
-    });
+    } catch (error) {
+      clubSearchErrorElement.textContent = error.message;
+      showSearchError();
+    }
+
+
+    // SportsApi.searchClub(query)
+    // .then((result)=>{
+    //   displayResult(result);
+
+    //   showClubList();
+    // })
+    // .catch((error)=>{
+    //   clubSearchErrorElement.textContent = error.message;
+    //   showSearchError();
+    // });
   };
 
   const onSearchHandler = (event) => {
@@ -61,6 +75,13 @@ const home = () => {
       Utils.hideElement(element);
     });
     Utils.showElement(clubQueryWaitingElement);
+  };
+
+  const showSearchError = () =>{
+    Array.from(clubListContainerElement.children).forEach((element)=>{
+      Utils.hideElement(element);
+    });
+    Utils.showElement(clubSearchErrorElement);
   };
 
   searchFormElement.addEventListener('search', onSearchHandler);
